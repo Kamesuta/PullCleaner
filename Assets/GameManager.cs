@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,24 +7,24 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         None,
-        Control, // ‘€ì‰Â”\
-        Physics, // •¨—‰‰Z
-        Brake, // Œ¸‘¬
+        Control, // æ“ä½œå¯èƒ½
+        Physics, // ç‰©ç†æ¼”ç®—
+        Brake, // æ¸›é€Ÿ
     }
 
-    // ŠÖ
+    // æ™‚é–¢
     public float dumpingStartSec = 5.0f;
     public float endSec = 10.0f;
     private float time;
 
-    // ƒNƒŠ[ƒi[
+    // ã‚¯ãƒªãƒ¼ãƒŠãƒ¼
     private CleanerController cleanerController;
 
-    // ƒXƒe[ƒg
+    // ã‚¹ãƒ†ãƒ¼ãƒˆ
     public GameState gameState = GameState.Control;
     private GameState lastGameState = GameState.None;
 
-    // ƒ}ƒXƒN
+    // ãƒã‚¹ã‚¯
     public MaskBehavior mask;
 
     public bool boost = false;
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ŠÔ‚ğ‰ÁZ
+        // æ™‚é–“ã‚’åŠ ç®—
         time += Time.deltaTime;
 
         if (boost && Input.GetMouseButton(0))
@@ -47,13 +47,13 @@ public class GameManager : MonoBehaviour
             cleanerController.StartControl(obj.GetComponent<Rigidbody2D>());
         }
 
-        // XVˆ—
+        // æ›´æ–°å‡¦ç†
         switch (gameState)
         {
             case GameState.Control:
                 break;
             case GameState.Physics:
-                // w’è‚µ‚½•b”‚ªŒo‰ß‚µ‚½‚çŒ¸‘¬‚·‚é
+                // æŒ‡å®šã—ãŸç§’æ•°ãŒçµŒéã—ãŸã‚‰æ¸›é€Ÿã™ã‚‹
                 if (time > dumpingStartSec)
                 {
                     gameState = GameState.Brake;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
         if (gameState != lastGameState)
         {
-            // ŠJnˆ—
+            // é–‹å§‹å‡¦ç†
             switch (gameState)
             {
                 case GameState.Control:
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
-            // I—¹ˆ—
+            // çµ‚äº†å‡¦ç†
             switch (lastGameState)
             {
                 case GameState.Control:

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,25 +19,25 @@ public class CleanerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ©g‚Ì”ÍˆÍ‚ğæ“¾
+        // è‡ªèº«ã®ç¯„å›²ã‚’å–å¾—
         Vector2 worldPoint = transform.position;
         float radius = circleCollider.radius * transform.localScale.x;
-        // ƒ}ƒXƒN‚Ì”ÍˆÍ‚ğæ“¾‚µA“–‚½‚è”»’è‚ªæ‚Á‚Ä‚¢‚é•”•ª‚ÌƒeƒNƒXƒ`ƒƒ‚ğ“§–¾‚É‚·‚é
+        // ãƒã‚¹ã‚¯ã®ç¯„å›²ã‚’å–å¾—ã—ã€å½“ãŸã‚Šåˆ¤å®šãŒä¹—ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’é€æ˜ã«ã™ã‚‹
         mask.WriteToTexture(worldPoint, radius);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ƒ}ƒXƒN‚É“–‚½‚Á‚½‚ç‰¹‚ğ–Â‚ç‚·
+        // ãƒã‚¹ã‚¯ã«å½“ãŸã£ãŸã‚‰éŸ³ã‚’é³´ã‚‰ã™
         if (collision.gameObject.layer == gameObject.layer)
         {
             if (collision.gameObject.GetInstanceID() < gameObject.GetInstanceID())
             {
-                // “–‚½‚Á‚½‘¬“x‚ğŒvZ
+                // å½“ãŸã£ãŸé€Ÿåº¦ã‚’è¨ˆç®—
                 hitAudio.volume = Mathf.Clamp01(collision.relativeVelocity.magnitude * 0.1f);
                 hitAudio.Play();
 
-                // “–‚½‚Á‚½êŠ‚É”š”­ƒGƒtƒFƒNƒg‚ğ¶¬
+                // å½“ãŸã£ãŸå ´æ‰€ã«çˆ†ç™ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
                 Quaternion randomRotation = Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
                 GameObject obj = Instantiate(bombEffectPrefab, collision.contacts[0].point, randomRotation);
                 obj.transform.localScale = Vector3.one * collision.relativeVelocity.magnitude * 0.05f;

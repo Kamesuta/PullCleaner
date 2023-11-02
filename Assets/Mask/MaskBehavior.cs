@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,25 +19,25 @@ public class MaskBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ƒ}ƒXƒN‚ÌƒeƒNƒXƒ`ƒƒ‚ğƒRƒs[
+        // ãƒã‚¹ã‚¯ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚³ãƒ”ãƒ¼
         maskTexture = new Texture2D(mask.sprite.texture.width, mask.sprite.texture.height, TextureFormat.RGBA32, false);
         maskTexture.SetPixels32(mask.sprite.texture.GetPixels32());
         maskTexture.Apply();
-        // ƒ}ƒXƒN‚ÌƒeƒNƒXƒ`ƒƒ‚ğ•ÏX
+        // ãƒã‚¹ã‚¯ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¤‰æ›´
         mask.sprite = Sprite.Create(maskTexture, mask.sprite.rect, Vector2.one * 0.5f);
 
-        // ƒ}ƒXƒN‚ÌƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹”‚ğæ“¾
+        // ãƒã‚¹ã‚¯ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—
         totalPixels = maskTexture.width * maskTexture.height;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ƒfƒoƒbƒO—p: ƒ}ƒXƒN‚Ì”ÍˆÍ‚ğæ“¾‚µA“–‚½‚è”»’è‚ªæ‚Á‚Ä‚¢‚é•”•ª‚ÌƒeƒNƒXƒ`ƒƒ‚ğ“§–¾‚É‚·‚é
+        // ãƒ‡ãƒãƒƒã‚°ç”¨: ãƒã‚¹ã‚¯ã®ç¯„å›²ã‚’å–å¾—ã—ã€å½“ãŸã‚Šåˆ¤å®šãŒä¹—ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’é€æ˜ã«ã™ã‚‹
         /*
         if (Input.GetMouseButton(0))
         {
-            // ƒ}ƒEƒX‚ÌˆÊ’u‚ğƒeƒNƒXƒ`ƒƒ‚ÌUVÀ•W‚É•ÏŠ·
+            // ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®UVåº§æ¨™ã«å¤‰æ›
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             WriteToTexture(worldPoint, 0.2f);
         }
@@ -45,25 +45,25 @@ public class MaskBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ}ƒXƒN‚ÌƒNƒŠƒA—¦‚ğæ“¾
+    /// ãƒã‚¹ã‚¯ã®ã‚¯ãƒªã‚¢ç‡ã‚’å–å¾—
     /// </summary>
-    /// <returns>ƒNƒŠƒA—¦</returns>
+    /// <returns>ã‚¯ãƒªã‚¢ç‡</returns>
     public float GetClearRate()
     {
         return (float)writePixels / totalPixels;
     }
 
     /// <summary>
-    /// ƒeƒNƒXƒ`ƒƒ‚É‘‚«‚Ş
+    /// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æ›¸ãè¾¼ã‚€
     /// </summary>
-    /// <param name="worldPoint">ƒ[ƒ‹ƒhÀ•W</param>
-    /// <param name="radius">”¼Œa</param>
+    /// <param name="worldPoint">ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™</param>
+    /// <param name="radius">åŠå¾„</param>
     public void WriteToTexture(Vector2 worldPoint, float radius)
     {
-        // ‘S‚Ä‚ÌƒsƒNƒZƒ‹‚ğ‘‚«‚ñ‚¾‚çƒGƒtƒFƒNƒg‚ğÄ¶
+        // å…¨ã¦ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’æ›¸ãè¾¼ã‚“ã ã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿ
         if (GetClearRate() > 0.99f && !isClear)
         {
-            // ƒ}ƒXƒN‚ÌƒeƒNƒXƒ`ƒƒ‚ğÁ‚·
+            // ãƒã‚¹ã‚¯ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ¶ˆã™
             for (int i = 0; i < maskTexture.width; i++)
             {
                 for (int j = 0; j < maskTexture.height; j++)
@@ -72,52 +72,52 @@ public class MaskBehavior : MonoBehaviour
                 }
             }
 
-            // ‘‚«‚ñ‚¾ƒsƒNƒZƒ‹”‚ğƒJƒEƒ“ƒg
+            // æ›¸ãè¾¼ã‚“ã ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
             writePixels = totalPixels;
 
             isClear = true;
 
-            // ƒ}ƒXƒN‚ÌƒGƒtƒFƒNƒg‚ğÄ¶
+            // ãƒã‚¹ã‚¯ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿ
             PlayMaskEffect();
 
             return;
         }
 
-        // worldPoint(mask.bounds.min`mask.bounds.max)‚ğmaskTexture‚ÌUVÀ•W‚É•ÏŠ·
+        // worldPoint(mask.bounds.minï½mask.bounds.max)ã‚’maskTextureã®UVåº§æ¨™ã«å¤‰æ›
         float x = (worldPoint.x - mask.bounds.min.x) / mask.bounds.size.x;
         float y = (worldPoint.y - mask.bounds.min.y) / mask.bounds.size.y;
         float r = radius / mask.bounds.size.x;
-        // ƒeƒNƒXƒ`ƒƒ‚ÌUVÀ•W‚ğƒsƒNƒZƒ‹À•W‚É•ÏŠ·
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®UVåº§æ¨™ã‚’ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã«å¤‰æ›
         int px = Mathf.FloorToInt(x * maskTexture.width);
         int py = Mathf.FloorToInt(y * maskTexture.height);
         int pr = Mathf.FloorToInt(r * maskTexture.width);
-        // ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹À•W‚ğ“§–¾‚É‚·‚é
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã‚’é€æ˜ã«ã™ã‚‹
         for (int i = -pr; i <= pr; i++)
         {
             for (int j = -pr; j <= pr; j++)
             {
-                // ‰~‚Ì“à‘¤‚ÌƒsƒNƒZƒ‹‚Ì‚İ“§–¾‚É‚·‚é
+                // å††ã®å†…å´ã®ãƒ”ã‚¯ã‚»ãƒ«ã®ã¿é€æ˜ã«ã™ã‚‹
                 if (i * i + j * j > pr * pr) continue;
 
-                // ƒeƒNƒXƒ`ƒƒ‚Ì”ÍˆÍŠO‚Í–³‹
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¯„å›²å¤–ã¯ç„¡è¦–
                 if (px + i < 0 || px + i >= maskTexture.width) continue;
                 if (py + j < 0 || py + j >= maskTexture.height) continue;
 
-                // ƒsƒNƒZƒ‹‚ªŠù‚É“§–¾‚È‚ç–³‹
+                // ãƒ”ã‚¯ã‚»ãƒ«ãŒæ—¢ã«é€æ˜ãªã‚‰ç„¡è¦–
                 if (maskTexture.GetPixel(px + i, py + j) == Color.clear) continue;
 
-                // ‘‚«‚ñ‚¾ƒsƒNƒZƒ‹”‚ğƒJƒEƒ“ƒg
+                // æ›¸ãè¾¼ã‚“ã ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
                 writePixels++;
-                // ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹‚ğ“§–¾‚É‚·‚é
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’é€æ˜ã«ã™ã‚‹
                 maskTexture.SetPixel(px + i, py + j, Color.clear);
             }
         }
-        // ƒeƒNƒXƒ`ƒƒ‚Ì•ÏX‚ğ“K—p
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¤‰æ›´ã‚’é©ç”¨
         maskTexture.Apply();
     }
 
     /// <summary>
-    /// ƒ}ƒXƒN‚ÌƒGƒtƒFƒNƒg‚ğÄ¶
+    /// ãƒã‚¹ã‚¯ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿ
     /// </summary>
     public void PlayMaskEffect()
     {

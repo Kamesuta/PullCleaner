@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,6 +17,6 @@ public class ScoreDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = $"ê¥åâìx:{maskBehavior.GetClearRate() * 100:F1}Åì";
+        text.text = $"Ê∏ÖÊΩîÂ∫¶:{maskBehavior.GetClearRate() * 100:F1}ÔºÖ";
     }
 }

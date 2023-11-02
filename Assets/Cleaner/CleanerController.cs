@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CleanerController : MonoBehaviour
 {
-    // ‘€ìŒn
+    // æ“ä½œç³»
     public Rigidbody2D rb;
     private bool isControl = false;
 
-    // ƒ}ƒEƒXA–îˆóŒn
+    // ãƒã‚¦ã‚¹ã€çŸ¢å°ç³»
     private Vector2 mouseLastPos;
     public GameObject arrowObject;
     public float arrowScale = 1.0f;
 
-    // —Í‚Ì‹­‚³AŒ¸‘¬‚Ì‹­‚³
+    // åŠ›ã®å¼·ã•ã€æ¸›é€Ÿã®å¼·ã•
     public float power = 1.0f;
     public float drag = 1.0f;
 
-    // ƒNƒŠ[ƒi[
+    // ã‚¯ãƒªãƒ¼ãƒŠãƒ¼
     public GameObject cleanerPrefab;
     public GameObject cleanerParent;
 
@@ -36,28 +36,28 @@ public class CleanerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // ƒ}ƒEƒX‚ÌˆÊ’u‚ğæ“¾
+            // ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’å–å¾—
             mouseLastPos = Input.mousePosition;
-            // –îˆó‚ÌˆÊ’u‚ğƒ}ƒEƒX‚ÌˆÊ’u‚Éİ’è
+            // çŸ¢å°ã®ä½ç½®ã‚’ãƒã‚¦ã‚¹ã®ä½ç½®ã«è¨­å®š
             arrowObject.transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // –îˆó‚ğ•\¦‚·‚é
+            // çŸ¢å°ã‚’è¡¨ç¤ºã™ã‚‹
             arrowObject.SetActive(true);
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            // ƒ}ƒEƒX‚ÌˆÚ“®—Ê‚É‰‚¶‚Ä—Í‚ğ‰Á‚¦‚é
+            // ãƒã‚¦ã‚¹ã®ç§»å‹•é‡ã«å¿œã˜ã¦åŠ›ã‚’åŠ ãˆã‚‹
             rb.AddForce(-((Vector2)Input.mousePosition - mouseLastPos).normalized * power);
-            // ƒXƒe[ƒg‚ğXV
+            // ã‚¹ãƒ†ãƒ¼ãƒˆã‚’æ›´æ–°
             FindObjectOfType<GameManager>().gameState = GameManager.GameState.Physics;
-            // –îˆó‚ğ”ñ•\¦‚É‚·‚é
+            // çŸ¢å°ã‚’éè¡¨ç¤ºã«ã™ã‚‹
             arrowObject.SetActive(false);
         }
         
         if (Input.GetMouseButton(0))
         {
-            // –îˆó‚ÌŠp“x‚ğƒ}ƒEƒX‚ÌˆÊ’u‚É‡‚í‚¹‚Äİ’è
+            // çŸ¢å°ã®è§’åº¦ã‚’ãƒã‚¦ã‚¹ã®ä½ç½®ã«åˆã‚ã›ã¦è¨­å®š
             arrowObject.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(Input.mousePosition.y - mouseLastPos.y, Input.mousePosition.x - mouseLastPos.x) * Mathf.Rad2Deg);
-            // –îˆó‚Ì’·‚³‚ğƒ}ƒEƒX‚ÌˆÊ’u‚É‡‚í‚¹‚Äİ’è
+            // çŸ¢å°ã®é•·ã•ã‚’ãƒã‚¦ã‚¹ã®ä½ç½®ã«åˆã‚ã›ã¦è¨­å®š
             arrowObject.transform.localScale = new Vector3(Vector2.Distance(Input.mousePosition, mouseLastPos) * arrowScale, 1, 1);
         }
     }
